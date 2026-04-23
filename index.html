@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TATA FLOW 首批學員招募</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+TC:wght@200;300;400;500&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream:      #FAF6F0;
+    --warm:       #F4EDE3;
+    --ink:        #2A1A12;
+    --ink-lt:     #4A3428;
+    --brand:      #C4451A;
+    --brand-lt:   #D9623A;
+    --brand-dk:   #A03318;
+    --brand-pale: #FBF0EB;
+    --gold:       #C9956A;
+    --gold-lt:    #E8C4A0;
+    --muted:      #9A8878;
+    --border:     #E4D8CC;
+    --border-lt:  #EDE6DE;
+  }
+
+  body {
+    background: #EDE6DC;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 520px;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before, .card::after {
+    content: '';
+    position: absolute;
+    width: 52px; height: 52px;
+    border-color: var(--gold);
+    border-style: solid;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .card::before { top: 14px; left: 14px; border-width: 1px 0 0 1px; }
+  .card::after  { bottom: 14px; right: 14px; border-width: 0 1px 1px 0; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 210px;
+    background: linear-gradient(160deg, var(--brand-dk) 0%, var(--brand) 55%, var(--brand-lt) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px 32px 26px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 75% 30%, rgba(255,255,255,.09) 0%, transparent 55%);
+  }
+
+  .hero-grain {
+    position: absolute; inset: 0; opacity: .12;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.1'/%3E%3C/svg%3E");
+  }
+
+  .hero-phoenix {
+    position: absolute;
+    top: 18px; right: 26px;
+    opacity: .16;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.58);
+    margin-bottom: 10px;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 27px;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.3;
+    letter-spacing: .04em;
+    margin-bottom: 6px;
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(255,255,255,.6);
+    letter-spacing: .07em;
+    margin-bottom: 22px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.28);
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: .1em;
+    padding: 6px 16px;
+    border-radius: 2px;
+  }
+  .hero-badge span { opacity: .58; font-size: 10px; }
+
+  /* ── COURSE BADGE ── */
+  .course-strip {
+    background: var(--brand-pale);
+    border-bottom: 1px solid rgba(196,69,26,.15);
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .course-strip-icon {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--brand);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .course-strip-text { flex: 1; }
+
+  .course-strip-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--brand);
+    margin-bottom: 2px;
+  }
+
+  .course-strip-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── PERKS ── */
+  .perks {
+    display: flex;
+    background: var(--brand-dk);
+    padding: 10px 0;
+  }
+
+  .perk {
+    flex: 1;
+    text-align: center;
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: .05em;
+    padding: 4px 6px;
+    border-right: 1px solid rgba(255,255,255,.14);
+    line-height: 1.5;
+  }
+  .perk:last-child { border-right: none; }
+  .perk strong { display: block; font-size: 12px; font-weight: 500; }
+
+  /* ── BODY ── */
+  .body { padding: 28px 28px 0; }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 14px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 0 18px;
+  }
+
+  /* ── PRODUCT ROWS ── */
+  .product-list { margin-bottom: 28px; }
+
+  .product-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    margin-bottom: 6px;
+    transition: box-shadow .15s;
+  }
+
+  .product-row:hover { box-shadow: 0 3px 14px rgba(0,0,0,.07); }
+
+  .product-area {
+    font-size: 9px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 3px;
+  }
+
+  .product-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 1px;
+  }
+
+  .product-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .product-right { text-align: right; }
+
+  .p-sale {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .p-orig {
+    font-size: 10px;
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .p-course-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: .06em;
+    background: var(--brand-pale);
+    color: var(--brand);
+    border: 1px solid rgba(196,69,26,.2);
+    padding: 2px 7px;
+    border-radius: 2px;
+  }
+
+  /* ── BUNDLES ── */
+  .bundles { margin-bottom: 28px; }
+
+  .bundle-row {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 16px 14px 14px;
+    margin-bottom: 8px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    transition: box-shadow .15s;
+  }
+
+  .bundle-row:hover { box-shadow: 0 3px 14px rgba(0,0,0,.07); }
+  .bundle-row.featured { border-color: var(--brand); background: var(--brand-pale); }
+  .bundle-row.anchor   { border-color: var(--ink-lt); background: #F8F4EE; }
+
+  .bundle-tag {
+    position: absolute;
+    top: -1px; left: 12px;
+    font-size: 9px;
+    letter-spacing: .1em;
+    padding: 2px 8px;
+    border-radius: 0 0 3px 3px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .tag-brand { background: var(--brand); }
+  .tag-gold  { background: var(--gold); }
+  .tag-ink   { background: var(--ink-lt); }
+
+  .bundle-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .bundle-content { font-size: 11px; color: var(--muted); line-height: 1.7; }
+
+  .prod-tag {
+    display: inline-block;
+    background: #F3EFE8;
+    color: var(--ink-lt);
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin: 1px 2px 0 0;
+  }
+
+  .bundle-right { text-align: right; min-width: 90px; }
+
+  .b-sale {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .b-orig {
+    font-size: 10px;
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .b-course-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: .06em;
+    background: var(--brand-pale);
+    color: var(--brand);
+    border: 1px solid rgba(196,69,26,.2);
+    padding: 2px 7px;
+    border-radius: 2px;
+  }
+
+  /* ── NOTES ── */
+  .note-box {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    margin-bottom: 0;
+  }
+
+  .note-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    line-height: 1.65;
+  }
+  .note-row:last-child { margin-bottom: 0; }
+  .ndot { color: var(--brand); flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 24px 28px 38px;
+    text-align: center;
+    background: linear-gradient(0deg, var(--warm) 0%, var(--cream) 100%);
+  }
+
+  .footer-text {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    letter-spacing: .06em;
+    margin-bottom: 6px;
+  }
+
+  .footer-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--brand);
+    letter-spacing: .06em;
+    margin-bottom: 18px;
+  }
+
+  .footer-cta {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: .1em;
+    color: var(--brand);
+    border: 1px solid var(--brand);
+    padding: 7px 22px;
+    border-radius: 2px;
+    background: var(--brand-pale);
+  }
+
+  .watermark {
+    margin-top: 18px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: .28em;
+    color: var(--border);
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-grain"></div>
+    <div class="hero-phoenix">
+      <img src="data:image/png;base64,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" alt="TATA FLOW" style="width:110px;height:auto;display:block;">
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Tata Flow · 新品預購</div>
+      <div class="hero-title">塔塔流 美體循環組</div>
+      <div class="hero-sub">撥筋 x 刮痧 x 循環 一起感受身體的流動</div>
+      <div class="hero-badge">
+        <span>預購開跑</span>4/25
+      </div>
+    </div>
+  </div>
+
+  <!-- COURSE INCLUDED STRIP -->
+  <div class="course-strip">
+    <div class="course-strip-icon">✦</div>
+    <div class="course-strip-text">
+      <div class="course-strip-title">預購期間購買，即解鎖專屬課程</div>
+      <div class="course-strip-desc">煥顏課・輕盈課，首批學員限定開放</div>
+    </div>
+  </div>
+
+  <!-- PERKS -->
+  <div class="perks">
+    <div class="perk"><strong>首批限量</strong>各 150 件</div>
+    <div class="perk"><strong>附學員課程</strong>預購限定</div>
+    <div class="perk"><strong>全單免運</strong>首批限定</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- 單品 -->
+    <div class="section-label" style="margin-top:4px">── 單品 · Single Items ──</div>
+    <div class="divider"></div>
+
+    <div class="product-list">
+
+      <div class="product-row">
+        <div>
+          <div class="product-area">下半身 · 腹臀腿</div>
+          <div class="product-name">漂浮雲碟板</div>
+          <div class="product-en">Floating Cloud | Meridian Massage Brush</div>
+        </div>
+        <div class="product-right">
+          <div class="p-orig">NT$1,080</div>
+          <div class="p-sale">NT$880</div>
+        </div>
+      </div>
+
+      <div class="product-row">
+        <div>
+          <div class="product-area">上半身 · 肩頸胸臂</div>
+          <div class="product-name">舒心雲碟板</div>
+          <div class="product-en">Soothing Cloud | Meridian Massage Brush</div>
+        </div>
+        <div class="product-right">
+          <div class="p-orig">NT$980</div>
+          <div class="p-sale">NT$780</div>
+        </div>
+      </div>
+
+      <div class="product-row">
+        <div>
+          <div class="product-area">臉部 · 刮痧</div>
+          <div class="product-name">極光星蝶板</div>
+          <div class="product-en">Aurora Glow | Facial Gua Sha Tool</div>
+        </div>
+        <div class="product-right">
+          <div class="p-orig">NT$880</div>
+          <div class="p-sale">NT$680</div>
+        </div>
+      </div>
+
+      <div class="product-row">
+        <div>
+          <div class="product-area">臉部 · 刮痧</div>
+          <div class="product-name">蜜光星蝶板</div>
+          <div class="product-en">Honey Glow | Facial Gua Sha Tool</div>
+        </div>
+        <div class="product-right">
+          <div class="p-orig">NT$880</div>
+          <div class="p-sale">NT$680</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 組合 -->
+    <div class="section-label">── 組合方案 · Bundles ──</div>
+    <div class="divider"></div>
+
+    <div class="bundles">
+
+      <div class="bundle-row" style="margin-top:4px">
+        <div class="bundle-tag tag-gold">星蝶板包色</div>
+        <div>
+          <div class="bundle-name">星蝶雙板組</div>
+          <div class="bundle-content">
+            <span class="prod-tag">極光星蝶板</span>
+            <span class="prod-tag">蜜光星蝶板</span>
+          </div>
+        </div>
+        <div class="bundle-right">
+          <div class="b-orig">NT$1,760</div>
+          <div class="b-sale">NT$1,330</div>
+        </div>
+      </div>
+
+      <div class="bundle-row">
+        <div class="bundle-tag tag-gold">雲碟板包款</div>
+        <div>
+          <div class="bundle-name">雲碟雙板組</div>
+          <div class="bundle-content">
+            <span class="prod-tag">漂浮雲碟板</span>
+            <span class="prod-tag">舒心雲碟板</span>
+            <br><span style="font-size:10px;color:var(--muted)">上下半身完整循環</span>
+          </div>
+        </div>
+        <div class="bundle-right">
+          <div class="b-orig">NT$2,060</div>
+          <div class="b-sale">NT$1,630</div>
+        </div>
+      </div>
+
+      <div class="bundle-row">
+        <div class="bundle-tag tag-gold">臉部＋下半身</div>
+        <div>
+          <div class="bundle-name">星蝶 × 漂浮雲碟組</div>
+          <div class="bundle-content">
+            <span class="prod-tag">星蝶板（擇一）</span>
+            <span class="prod-tag">漂浮雲碟板</span>
+            <br><span style="font-size:10px;color:var(--muted)">臉部＋下半身循環</span>
+          </div>
+        </div>
+        <div class="bundle-right">
+          <div class="b-orig">NT$1,960</div>
+          <div class="b-sale">NT$1,530</div>
+        </div>
+      </div>
+
+      <div class="bundle-row">
+        <div class="bundle-tag tag-gold">臉部＋上半身</div>
+        <div>
+          <div class="bundle-name">星蝶 × 舒心雲碟組</div>
+          <div class="bundle-content">
+            <span class="prod-tag">星蝶板（擇一）</span>
+            <span class="prod-tag">舒心雲碟板</span>
+            <br><span style="font-size:10px;color:var(--muted)">臉部＋上半身循環</span>
+          </div>
+        </div>
+        <div class="bundle-right">
+          <div class="b-orig">NT$1,860</div>
+          <div class="b-sale">NT$1,430</div>
+        </div>
+      </div>
+
+
+      <div class="bundle-row anchor">
+        <div class="bundle-tag tag-ink">四款全包</div>
+        <div>
+          <div class="bundle-name">四件全套組</div>
+          <div class="bundle-content">
+            <span class="prod-tag">漂浮雲碟板</span>
+            <span class="prod-tag">舒心雲碟板</span>
+            <span class="prod-tag">極光星蝶板</span>
+            <span class="prod-tag">蜜光星蝶板</span>
+            <br><span style="font-size:10px;color:var(--muted)">臉部＋全身完整儀式</span>
+          </div>
+        </div>
+        <div class="bundle-right">
+          <div class="b-orig">NT$3,820</div>
+          <div class="b-sale">NT$2,900</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NOTES -->
+    <div class="note-box">
+      <div class="note-row"><span class="ndot">◆</span><span>4/25 開放預購，首批各品項 <strong>150 件</strong>，額滿即止</span></div>
+      <div class="note-row"><span class="ndot">◆</span><span>預購期間購買即解鎖<strong>學員專屬課程</strong>（首批限定）</span></div>
+      <div class="note-row"><span class="ndot">◆</span><span>預購期間<strong>全單免運</strong></span></div>
+      <div class="note-row"><span class="ndot">◆</span><span>星蝶板材質（極光 / 蜜光）下單時自選</span></div>
+      <div class="note-row"><span class="ndot">◆</span><span>預計出貨時間於下單後另行通知</span></div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-text">成為第一批，從工具到課程完整開始</div>
+    <div class="footer-en">Join the first circle.</div>
+    <div class="footer-cta">首批學員 · 4/25 開放 · 限量 150 件</div>
+    <div class="watermark">tata flow © 2026</div>
+  </div>
+
+</div>
+</body>
+</html>
